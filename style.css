@@ -1,0 +1,60 @@
+h3 {
+    font-family: roboto;
+    font-weight: 400;
+    font-size: 30px;
+}
+
+h4{
+    font-family: roboto;
+    font-weight: 300;
+    font-size: 25px;
+}
+p {
+    font-family: roboto;
+    font-weight: 400;
+    font-size: 15px;
+    line-height:17px;
+}
+    
+#header{
+    background-color: rgb(255, 60, 86);
+    color: white;
+    height: 100px;
+    text-align: center;
+}
+
+#headerTxt{
+    line-height: 100px;
+    font-family: Roboto;
+    font-weight: 300;
+    font-size: 65px;
+}
+
+.card{
+    margin: 5%;
+    border-radius: 0%;
+    border: none;
+    height: 350px;
+    width: 300px;
+    box-shadow: 5px 5px 5px #cccccc;
+    display: flex;
+}
+
+#cardHeader{
+    padding: 5%;
+    background-color: rgb(39, 115, 255);
+    color: white;
+}
+
+#infocol{
+    background-color: rgb(250, 247, 247);
+    padding-top: 15%;
+}
+#info{
+    padding: 5%;
+    width: 250px;
+    height:45px;
+    border: solid 1px rgb(182, 182, 182);
+    background-color: rgb(255, 255, 255);
+
+}
