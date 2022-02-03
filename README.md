@@ -2,13 +2,12 @@
 # Team Profile Generator 
 [![License: MIT](https://img.shields.io/badge/license-MIT-brightgreen)](https://opensource.org/licenses/MIT)
 #### **Name:** Honore Nelson
-#### **Deployed Link:** N/A
 #### **Github Repo:** https://github.com/matisses-goldfish/Team-Profile-Generator
 ---
     
 ##  Table of Contents:
 * [Description](#description)
-* [Acceptance Criteria](#acceptance-criteria)
+* [Acceptance Criteria](#acceptance-criteria-reference)
 * [Demo](#demo)
 * [Installation](#installation)
 * [Usage Information](#usage)
@@ -66,9 +65,9 @@ to launch the application.
 ---
 Contribute using the Github workflow model
     
-## Sources (provided in code as well):
+## Sources:
 ---
-Code based off of:
+Code based off of(provided in code as well):
 * https://github.com/nicolewallace09/team-profile-generator/blob/master/index.js
 * https://github.com/JamesLJenks/10_OOP-Team-Profile-Generator
 * https://github.com/amandardz/Team-Profile-Generator
