@@ -1,178 +1,185 @@
+// source: https://github.com/nicolewallace09/team-profile-generator
+const generateHTML = require('./src/generateHTML');
+
+const Manager = require('./lib/manager');
+const Engineer = require('./lib/engineer');
+const Intern = require('./lib/intern'); 
+
+const fs = require('fs'); 
 const inquirer = require('inquirer');
-const fs = require('fs');
-// const renderLicenseBadge = require('./license')
-// Firs things first, I need to create a prompt-based question list in my command line specifically for my 
-// Project Manager
-// this will generate a starter HTML file that we can then add on 
-var managerQuestions = [
-    {
-        type: 'input',
-        message:'Welcome to the Profile generator! Begin my entering a Project Title',
-        name: 'projTitle',
-    },
-    {
-        type: 'input',
-        message:'Thank you Team Manager! Please enter your name!',
-        name: 'managerName',
-    },
-    {
-        type: 'input',
-        message:'Please enter your employee ID',
-        name: 'managerID',
-    },
-    {
-        type: 'input',
-        message:'Please enter an email address!',
-        name: 'managerEmail',
-    },
-    {
-      type: 'input',
-      message: "Please Enter your Office Number",
-      name: 'officeNum',
-    },
 
-  ];
-inquirer
-  .prompt(managerQuestions)
-  .then((response) =>{
-  console.log(response);
-    response.confirm === response.password
-      ? console.log('Your reponses have been Sucessfully Loged!')
-      : console.log('Please try again :(')
-// I need to create my css file with my initial response
+const teamArray = []; 
 
-    fs.writeFile('index.html', generateHTML(response), (err) =>
-  err ? console.log(err) : console.log('Your Team Profile is now ready!') );
+const addManager = () => {
+    return inquirer.prompt ([
+        {
+            type: 'input',
+            message: 'Hello! Welcome to the team profile generator! Please enter your project title to begin', 
+            name: 'projectTitle',
+        },
+        {
+            type: 'input',
+            message: 'Please enter your name', 
+            name: 'name',
+        },
+        {
+            type: 'input',
+            message: "Please enter your ID",
+            name: 'id',
+        },
+        {
+            type: 'input',
+            message: "Please enter your email",
+            name: 'email',
+        },
+        {
+            type: 'input',
+            message: "Please enter your office number",
+            name: 'number',
 
+        }
+    ])
+    .then(managerInput => {
+        const  { name, id, email, number } = managerInput; 
+        const manager = new Manager (name, id, email, number);
+
+        teamArray.push(manager); 
+        console.log(manager); 
+    })
+};
+
+const addMember = () => {
+    console.log(`
+    Your input has been successfully logged
+    `);
+
+    return inquirer.prompt ([
+        {
+            type: 'list',
+            message: "which would you like to enter next?",
+            choices: ['Engineer', 'Intern'],
+            name: 'role',
+        },
+        {
+            type: 'input',
+            message: "What's their name?",
+            name: 'name', 
+            validate: nameInput => {
+                if (nameInput) {
+                    return true;
+                } else {
+                    console.log ("Please enter a vaild name");
+                    return false; 
+                }
+            }
+        },
+        {
+            type: 'input',
+            message: "Please enter their ID?",
+            name: 'id',
+            validate: nameInput => {
+                if  (isNaN(nameInput)) {
+                    console.log ("Please enter a valid ID")
+                    return false; 
+                } else {
+                    return true;
+                }
+            }
+        },
+        {
+            type: 'input',
+            message: "Please enter their email address",
+            name: 'email',
+            validate: email => {
+                valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
+                if (valid) {
+                    return true;
+                } else {
+                    console.log ('Please enter a valid email address')
+                    return false; 
+                }
+            }
+        },
+        {
+            type: 'input',
+            message: "Please enter their github username",
+            name: 'githubProfile',
+            when: (input) => input.role === "Engineer",
+            validate: nameInput => {
+                if (nameInput ) {
+                    return true;
+                } else {
+                    console.log ("Please enter a vaild github username")
+                }
+            }
+        },
+        {
+            type: 'input',
+            name: 'school',
+            message: "Please enter the intern's school",
+            when: (input) => input.role === "Intern",
+            validate: nameInput => {
+                if (nameInput) {
+                    return true;
+                } else {
+                    console.log ("Please enter the intern's school!")
+                }
+            }
+        },
+        {
+            type: 'confirm',
+            name: 'confirmAddMember',
+            message: 'Would you like to add another team member?',
+            default: false
+        }
+    ])
+    .then(teamData => {
+
+        let { name, id, email, role, githubProfile, school, confirmAddMember } = teamData; 
+        let member; 
+
+        if (role === "Engineer") {
+            member = new Engineer (name, id, email, githubProfile);
+
+            console.log(member);
+
+        } else if (role === "Intern") {
+            member = new Intern (name, id, email, school);
+
+            console.log(member);
+        }
+
+        teamArray.push(member); 
+
+        if (confirmAddMember) {
+            return addMember(teamArray); 
+        } else {
+            return teamArray;
+        }
+    })
+
+};
+
+
+const writeFile = data => {
+    fs.writeFile('./dist/index.html', data, err => {
+        if (err) {
+            console.log(err);
+            return;
+        } else {
+            console.log("Your team page has been successfully generated! Check your folder for a new html file!")
+        }
+    })
+}; 
+
+addManager()
+  .then(addMember)
+  .then(teamArray => {
+    return generateHTML(teamArray);
+  })
+  .then(pageHTML => {
+    return writeFile(pageHTML);
+  })
+  .catch(err => {
+ console.log(err);
   });
-   var generateHTML = (data) => {
-    return `
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">    
-        <link rel="stylesheet" href="./style.css">
-    
-        <title>My Project Team</title>
-    
-    </head>
-    
-    <body>
-        <div class="col text-center" id="header">
-            <h1 id="headerTxt">${data.projTitle}</h1>
-        </div>
-        <div class="col">
-            <div class= "card">
-                <div class="card-header" id="cardHeader">
-                    <h3>${data.managerName}</h3>
-                    <h4> Team Manager <h4>
-                </div>
-    
-                <div class="col" id="infocol">
-                    <div class="container" id="info">
-                        <p>ID:${data.managerID}</p>
-                    </div>
-                    <div class="container" id="info">
-                        <p>Email: ${data.managerEmail}</p>
-                    </div>
-                    <div class="container" id="info">
-                        <p>Office Number: ${data.officeNum}</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </body>
-    </html>
-`
-   }
-// Reminder: Please create clickable email link
-// Then I need to as a true or false question that would either allow them to continue adding infomration or
-var continueQuestion = [
-    {
-        type: 'checkbox',
-        message:'Would you like to continue by adding other members of your team?',
-        choices: ['Yes!','No Thanks!'],
-        name: 'continue',
-    },
-
-]
-// I need code that would stop the following is they choose no thanks:
-// if they continue:
-var memberQuestion = [
-    {
-        type: 'checkbox',
-        message:'Which would you like to include?',
-        choices:['Engineer','Intern'],
-        name: 'teamOpt',
-    },
-    {
-        type: 'input',
-        message:'Please enter the members name!',
-        name: 'memberName',
-    },
-    {
-        type: 'input',
-        message:'Please enter their employee ID',
-        name: 'memberID',
-    },
-    {
-        type: 'input',
-        message:'Please enter their email address!',
-        name: 'memberEmail',
-    },
-    {
-      type: 'input',
-      message: "Please Enter their Github Username!",
-      name: 'memberGit',
-    },
-    {
-        type: 'checkbox',
-        message:'Would you like to continue by adding another member?',
-        choices:['Engineer','Intern'],
-        name: 'continueQuest',
-    },
-  ];
-inquirer
-  .prompt(memberQuestion)
-  .then((response) =>{
-  console.log(response);
-    response.confirm === response.password
-      ? console.log('Your reponses have been Sucessfully Loged!')
-      : console.log('Please try again :(')
-
-// change write file to append file 
-    fs.writeFile('index.html', generateHTML(response), (err) =>
-  err ? console.log(err) : console.log('Your profile addition has been added!') );
-
-  });
-// I need code that circulates throuhg the questions until the user says they're done
-   var generateHTML = (data) => {
-    return `
-            <div class= "card">
-                <div class="card-header" id="cardHeader">
-                    <h3>${data.memberName}</h3>
-                    <h4> Team Manager <h4>
-                </div>
-    
-                <div class="col" id="infocol">
-                    <div class="container" id="info">
-                        <p>ID:${data.memberID}</p>
-                    </div>
-                    <div class="container" id="info">
-                        <p>Email: ${data.memberEmail}</p>
-                    </div>
-                    <div class="container" id="info">
-                        <p>Github: ${data.memberGit}</p>
-                    </div>
-                </div>
-            </div>
-`
-   }
-//    make github clickable
