@@ -47,7 +47,7 @@ THEN I exit the application, and the HTML is generated
 
 ## Demo:
 ---
-[![Team Profile Generator demo](http://img.youtube.com/vi/*youtube id*/0.jpg)](https://www.youtube.com/embed/*youtube id*)
+[![Team Profile Generator demo](http://img.youtube.com/vi/C5WaazSPVnE/0.jpg)](https://www.youtube.com/embed/C5WaazSPVnE)
 
 ## Installation:
 ---
