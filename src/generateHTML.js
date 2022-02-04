@@ -14,7 +14,7 @@ const generateManager = function (manager) {
                 <p>Email:<a href="mailto:${manager.email}">${manager.email}</a></p>
             </div>
             <div class="container" id="info">
-                <p>Office Number: ${manager.number}</p>
+                <p>Office Number: ${manager.officeNumber}</p>
             </div>
         </div>
     </div>
@@ -38,7 +38,7 @@ const generateEngineer = function (engineer) {
                 <p>Email:<a href="mailto:${engineer.email}">${engineer.email}</a></p>
             </div>
             <div class="container" id="info">
-                <p>Github: <a href="https://github.com/${engineer.githubProfile}">${engineer.githubProfile}</a></p>
+                <p>Github: <a href="https://github.com/${engineer.github}">${engineer.github}</a></p>
             </div>
         </div>
     </div>
@@ -77,7 +77,7 @@ generateHTML = (data) => {
 
     for (let i = 0; i < data.length; i++) {
         const teamMember = data[i];
-        const position = teamMember.getPosition(); 
+        const position = teamMember.getRoles(); 
 
 
         // call manager function
@@ -133,7 +133,7 @@ const generateTeamPage = function (memberCard) {
     </head>
     <body>
         <div class="col text-center" id="header">
-            <h1 id="headerTxt">${manager.projectTitle}</h1>
+            <h1 id="headerTxt">Project Workspace</h1>
         </div>
         <div class="col">
             <div class="row">

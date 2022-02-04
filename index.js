@@ -14,12 +14,7 @@ const addManager = () => {
     return inquirer.prompt ([
         {
             type: 'input',
-            message: 'Hello! Welcome to the team profile generator! Please enter your project title to begin', 
-            name: 'projectTitle',
-        },
-        {
-            type: 'input',
-            message: 'Please enter your name', 
+            message: 'Hello! Welcome to the team profile generator! Please enter your name to begin', 
             name: 'name',
         },
         {
@@ -35,13 +30,13 @@ const addManager = () => {
         {
             type: 'input',
             message: "Please enter your office number",
-            name: 'number',
+            name: 'officeNumber',
 
         }
     ])
     .then(managerInput => {
-        const  { name, id, email, number } = managerInput; 
-        const manager = new Manager (name, id, email, number);
+        const  { name, id, email, officeNumber } = managerInput; 
+        const manager = new Manager (name, id, email, officeNumber);
 
         teamArray.push(manager); 
         console.log(manager); 
@@ -64,67 +59,28 @@ const addMember = () => {
             type: 'input',
             message: "What's their name?",
             name: 'name', 
-            validate: nameInput => {
-                if (nameInput) {
-                    return true;
-                } else {
-                    console.log ("Please enter a vaild name");
-                    return false; 
-                }
-            }
         },
         {
             type: 'input',
             message: "Please enter their ID?",
             name: 'id',
-            validate: nameInput => {
-                if  (isNaN(nameInput)) {
-                    console.log ("Please enter a valid ID")
-                    return false; 
-                } else {
-                    return true;
-                }
-            }
         },
         {
             type: 'input',
             message: "Please enter their email address",
             name: 'email',
-            validate: email => {
-                valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
-                if (valid) {
-                    return true;
-                } else {
-                    console.log ('Please enter a valid email address')
-                    return false; 
-                }
-            }
         },
         {
             type: 'input',
             message: "Please enter their github username",
-            name: 'githubProfile',
+            name: 'github',
             when: (input) => input.role === "Engineer",
-            validate: nameInput => {
-                if (nameInput ) {
-                    return true;
-                } else {
-                    console.log ("Please enter a vaild github username")
-                }
-            }
         },
         {
             type: 'input',
             name: 'school',
             message: "Please enter the intern's school",
             when: (input) => input.role === "Intern",
-            validate: nameInput => {
-                if (nameInput) {
-                    return true;
-                } else {
-                    console.log ("Please enter the intern's school!")
-                }
-            }
         },
         {
             type: 'confirm',
@@ -135,11 +91,11 @@ const addMember = () => {
     ])
     .then(teamData => {
 
-        let { name, id, email, role, githubProfile, school, confirmAddMember } = teamData; 
+        let { name, id, email, role, github, school, confirmAddMember } = teamData; 
         let member; 
 
         if (role === "Engineer") {
-            member = new Engineer (name, id, email, githubProfile);
+            member = new Engineer (name, id, email, github);
 
             console.log(member);
 
