@@ -12,6 +12,7 @@
 * [Demo](#demo)
 * [Application](#application)
 * [Installation](#installation)
+* [Technologies Used](#technologies-used)
 * [Usage Information](#usage)
 * [Testing Instructions](#testing)
 * [Sources](#sources)
@@ -61,6 +62,12 @@ THEN I exit the application, and the HTML is generated
 ## Installation:
 ---
     node index.js
+    
+## Technologies Used:
+---
+* inquirer
+* jest
+
 
 ## Usage
 ---
