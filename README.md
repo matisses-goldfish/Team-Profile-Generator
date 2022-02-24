@@ -9,6 +9,7 @@
 * [Description](#description)
 * [Acceptance Criteria](#acceptance-criteria-reference)
 * [Demo](#demo)
+* [Application](#application)
 * [Installation](#installation)
 * [Usage Information](#usage)
 * [Testing Instructions](#testing)
@@ -50,6 +51,12 @@ THEN I exit the application, and the HTML is generated
 #### Click on the Image to begin the demo video
 [![Team Profile Generator demo](http://img.youtube.com/vi/C5WaazSPVnE/0.jpg)](https://www.youtube.com/embed/C5WaazSPVnE)
 
+## Application:
+---
+![main page](teamprofile.png)
+![profile example](profileex.png)
+![Begin Application](beginapp.png)
+
 ## Installation:
 ---
     node index.js
@@ -61,7 +68,7 @@ Creating a forked copy, open your repo in vs code, open your integrated terminal
 to install inquirer, and 
     node index.js 
 to launch the application.
-    
+   
 ## Contribution Guidelines:
 ---
 Contribute using the Github workflow model
