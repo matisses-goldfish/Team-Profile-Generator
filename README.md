@@ -85,7 +85,6 @@ Contribute using the Github workflow model
 ---
 Code based off of(provided in code as well):
 * https://github.com/nicolewallace09/team-profile-generator/blob/master/index.js
-* https://github.com/amandardz/Team-Profile-Generator/blob/main/src/generateTeam.js
 * https://github.com/JamesLJenks/10_OOP-Team-Profile-Generator
 * https://github.com/amandardz/Team-Profile-Generator
    
