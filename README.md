@@ -57,7 +57,6 @@ THEN I exit the application, and the HTML is generated
 ---
 ![main page](teamprofile.png)
 ![profile example](profileex.png)
-![Begin Application](beginapp.png)
 
 ## Installation:
 ---
