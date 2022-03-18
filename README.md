@@ -82,8 +82,7 @@ Contribute using the Github workflow model
     
 ## Sources:
 ---
-* writefile on index.js based on: https://github.com/nicolewallace09/team-profile-generator/blob/master/index.js
-* Switch Case on index.js based on: https://github.com/amandardz/Team-Profile-Generator
+* Switch Case on index.js based on: https://stackoverflow.com/questions/31662389/switch-statement-it-does-not-work-with-prompt
    
 ## Authors
 ---
