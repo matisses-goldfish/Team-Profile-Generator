@@ -3,13 +3,16 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-brightgreen)](https://opensource.org/licenses/MIT)
 #### **Name:** Honore Nelson
 #### **Github Repo:** https://github.com/matisses-goldfish/Team-Profile-Generator
+#### **URL:** Backend Application- no URL
 ---
     
 ##  Table of Contents:
 * [Description](#description)
 * [Acceptance Criteria](#acceptance-criteria-reference)
 * [Demo](#demo)
+* [Application](#application)
 * [Installation](#installation)
+* [Technologies Used](#technologies-used)
 * [Usage Information](#usage)
 * [Testing Instructions](#testing)
 * [Sources](#sources)
@@ -47,11 +50,24 @@ THEN I exit the application, and the HTML is generated
 
 ## Demo:
 ---
-[![Team Profile Generator demo](http://img.youtube.com/vi/*youtube id*/0.jpg)](https://www.youtube.com/embed/*youtube id*)
+#### Click on the Image to begin the demo video
+[![Team Profile Generator demo](http://img.youtube.com/vi/C5WaazSPVnE/0.jpg)](https://www.youtube.com/embed/C5WaazSPVnE)
+
+## Application:
+---
+![main page](teamprofile.png)
+![profile example](profileex.png)
+![Begin Application](beginapp.png)
 
 ## Installation:
 ---
     node index.js
+    
+## Technologies Used:
+---
+* inquirer
+* jest
+
 
 ## Usage
 ---
@@ -60,7 +76,7 @@ Creating a forked copy, open your repo in vs code, open your integrated terminal
 to install inquirer, and 
     node index.js 
 to launch the application.
-    
+   
 ## Contribution Guidelines:
 ---
 Contribute using the Github workflow model
