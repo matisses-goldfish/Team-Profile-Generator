@@ -1,4 +1,43 @@
-const generateManager = function (manager) {
+const Manager = require('../lib/Manager');
+const Engineer = require('../lib/Engineer')
+const Intern = require('../lib/Intern')
+
+generateHtml = (entireTeam) => {
+
+    teamCards = []; 
+
+    for (let i = 0; i < entireTeam.length; i++) {
+        const teamMember = entireTeam[i];
+        switch (teamMember.getRoles()) {
+
+
+        case 'Manager':
+            const manager = new Manager(teamMember.id, teamMember.name, teamMember.email, teamMember.officeNumber);
+            teamCards.push(createManager(manager));
+            break;
+
+          case 'Engineer':
+            const engineer = new Engineer(teamMember.id, teamMember.name, teamMember.email, teamMember.github);
+            teamCards.push(createEngineer(engineer));
+            break;
+
+          case 'Intern':
+            const intern = new Intern(teamMember.id, teamMember.name, teamMember.email, teamMember.school);
+            teamCards.push(createIntern(intern));
+            break;
+    } 
+    }
+
+    const memberCard = teamCards.join('')
+
+    // return to generated page
+    const createNewTeam = createTeamSite(memberCard); 
+    return createNewTeam;
+
+}
+
+
+const createManager = function (manager) {
     return `
     <div class= "card">
         <div class="card-header" id="cardHeader">
@@ -21,8 +60,7 @@ const generateManager = function (manager) {
     `;
 }
 
-// create Engineer card
-const generateEngineer = function (engineer) {
+const createEngineer = function (engineer) {
     return `
     <div class= "card">
         <div class="card-header" id="cardHeader">
@@ -46,7 +84,7 @@ const generateEngineer = function (engineer) {
 }
 
 // create Intern card 
-const generateIntern = function (intern) {
+const createIntern = function (intern) {
     return `
     <div class= "card">
         <div class="card-header" id="cardHeader">
@@ -69,51 +107,9 @@ const generateIntern = function (intern) {
     `
 };
 
-// push array to page 
-generateHTML = (data) => {
-
-    // array for cards 
-    pageArray = []; 
-
-    for (let i = 0; i < data.length; i++) {
-        const teamMember = data[i];
-        const position = teamMember.getRoles(); 
-
-
-        // call manager function
-        if (position === 'Manager') {
-            const managerCard = generateManager(teamMember);
-
-            pageArray.push(managerCard);
-        }
-
-        // call engineer function
-        if (position === 'Engineer') {
-            const engineerCard = generateEngineer(teamMember);
-
-            pageArray.push(engineerCard);
-        }
-
-        // call intern function 
-        if (position === 'Intern') {
-            const internCard = generateIntern(teamMember);
-
-            pageArray.push(internCard);
-        }
-        
-    }
-
-    // joining strings 
-    const memberCard = pageArray.join('')
-
-    // return to generated page
-    const generateTeam = generateTeamPage(memberCard); 
-    return generateTeam;
-
-}
 
 // generate html page 
-const generateTeamPage = function (memberCard) {   
+const createTeamSite = function (memberCard) {   
   return`
 <!DOCTYPE html>
 <html lang="en">
@@ -146,4 +142,4 @@ const generateTeamPage = function (memberCard) {
 }
 
 // export to index
-module.exports = generateHTML; 
+module.exports = generateHtml; 
