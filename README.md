@@ -50,9 +50,8 @@ THEN I exit the application, and the HTML is generated
 
 ## Demo:
 ---
-***code has been recently updated with differnt prompt format***
 #### Click on the Image to begin the demo video
-[![Team Profile Generator demo](http://img.youtube.com/vi/C5WaazSPVnE/0.jpg)](https://www.youtube.com/embed/C5WaazSPVnE)
+[![Team Profile Generator demo](http://img.youtube.com/vi/UtPQquc-WSk/0.jpg)](https://www.youtube.com/embed/UtPQquc-WSk)
 
 ## Application:
 ---
