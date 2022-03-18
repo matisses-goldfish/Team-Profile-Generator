@@ -50,6 +50,7 @@ THEN I exit the application, and the HTML is generated
 
 ## Demo:
 ---
+***code has been recently updated with differnt prompt format***
 #### Click on the Image to begin the demo video
 [![Team Profile Generator demo](http://img.youtube.com/vi/C5WaazSPVnE/0.jpg)](https://www.youtube.com/embed/C5WaazSPVnE)
 
@@ -57,7 +58,6 @@ THEN I exit the application, and the HTML is generated
 ---
 ![main page](teamprofile.png)
 ![profile example](profileex.png)
-![Begin Application](beginapp.png)
 
 ## Installation:
 ---
@@ -85,6 +85,7 @@ Contribute using the Github workflow model
 ---
 Code based off of(provided in code as well):
 * https://github.com/nicolewallace09/team-profile-generator/blob/master/index.js
+* https://github.com/amandardz/Team-Profile-Generator/blob/main/src/generateTeam.js
 * https://github.com/JamesLJenks/10_OOP-Team-Profile-Generator
 * https://github.com/amandardz/Team-Profile-Generator
    
