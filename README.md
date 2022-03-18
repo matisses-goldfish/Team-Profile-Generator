@@ -83,9 +83,8 @@ Contribute using the Github workflow model
     
 ## Sources:
 ---
-* writefile formated after: https://github.com/nicolewallace09/team-profile-generator/blob/master/index.js
-* Tests formated after: https://github.com/JamesLJenks/10_OOP-Team-Profile-Generator
-* Switch Case formated after: https://github.com/amandardz/Team-Profile-Generator
+* writefile on index.js based on: https://github.com/nicolewallace09/team-profile-generator/blob/master/index.js
+* Switch Case on index.js based on: https://github.com/amandardz/Team-Profile-Generator
    
 ## Authors
 ---
