@@ -9,7 +9,7 @@ generateHtml = (entireTeam) => {
         const teamMember = entireTeam[i];
 
         // TODO: console returns getRole() as not a function
-        switch (teamMember.getRole()) {
+        switch (teamMember.getRoles ()) {
             case 'Manager':
                 const manager = createManager(teamMember);
                 teamCards.push(manager);
@@ -34,7 +34,7 @@ generateHtml = (entireTeam) => {
     }
 
     const memberCard = teamCards.join('')
-    
+
     const createNewTeam = createTeamSite(memberCard); 
     return createNewTeam;
 
