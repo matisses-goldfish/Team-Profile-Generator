@@ -13,12 +13,11 @@ const welcomePrompt = () => {
     return inquirer.prompt ([
         {
             type: 'confirm',
-            message: "Welcome to the team profile generate, please begin by pressing enter!",
+            message: "Welcome to the Team Profile Generate, please begin by pressing enter!",
             name: 'continue',
             default: true
         }
     ])
-    // TODO: fix if else statement
     .then( welcomePrompt => {
         switch(welcomePrompt.continue) {
             case true:
@@ -56,7 +55,7 @@ const iniatialQuestion = () => {
     });
 };
 
-// create manager
+// creates manager
 const newManager = () => {
     return inquirer.prompt ([
         {
@@ -114,7 +113,7 @@ const newManager = () => {
     });
 };
 
-// create engineer
+// creates engineer
 const newEngineer = () => {
     return inquirer.prompt ([
         {
@@ -171,7 +170,7 @@ const newEngineer = () => {
     });
 };
 
-// create intern
+// creates intern
 const newIntern = () => {
     return inquirer.prompt ([
         {
@@ -229,6 +228,7 @@ const newIntern = () => {
 
 };
 
+// writes the code and deposits it in the dist folder
 const htmlAddition = data => {
     fs.writeFile('./dist/index.html', data, err => {
         if (err) {
@@ -240,4 +240,5 @@ const htmlAddition = data => {
     })
 }; 
 
+// begins the prompts in the integrated terimal 
 welcomePrompt()

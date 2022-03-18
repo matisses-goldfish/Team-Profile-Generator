@@ -1,20 +1,19 @@
-// code based on: https://github.com/JamesLJenks/10_OOP-Team-Profile-Generator
+
 const Manager = require("../lib/manager");
 
-test("if our user can create an office number", () => {
-    const testOfficeNumber = 7384758347;
-    const testEmployee = new Manager("Honore", 74658, "honoregn@gmail.com", testOfficeNumber);
-    expect(testEmployee.officeNumber).toBe(testOfficeNumber);
-});
+test("if our user can create a new Manager", () => {
+    const testManager = new Manager( );
+    expect(typeof(testManager)).toBe("object");
+})
 
-test("if the user-input officeNumber will return office number", () => {
-    const testOfficeNumber = 7384758347;
-    const testEmployee = new Manager("Honore", 74658, "honoregn@gmail.com", testOfficeNumber);
-    expect(testEmployee.getOfficeNumber()).toBe(testOfficeNumber);
-});
-
-test("if the role returns the proper value", () => {
-    const returnValue = "Manager";
-    const testEmployee = new Manager("Honore", 74658, "honoregn@gmail.com", 7384758347);
-    expect(testEmployee.getRole()).toBe(returnValue);
-});
+test("if name and id input works", () => {
+    const name = "Honore";
+    const id = 74658;
+    const email = "honoregn@gmail.com";
+    const officeNumber = 7382738472;
+    const testManager = new Manager(name, id, email, officeNumber);
+    expect(testManager.name).toBe(name);
+    expect(testManager.name).toBe(id);
+    expect(testManager.email).toBe(email);
+    expect(testManager.github).toBe(officeNumber);
+})
