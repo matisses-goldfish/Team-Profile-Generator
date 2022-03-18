@@ -37,3 +37,5 @@
 // if continue: jump to iniatial questions
 
 // if quit => create team array and generate html 
+
+// Need a prompt that would begin the application

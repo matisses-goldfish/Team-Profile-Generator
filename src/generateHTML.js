@@ -1,36 +1,40 @@
-const Manager = require('../lib/Manager');
-const Engineer = require('../lib/Engineer')
-const Intern = require('../lib/Intern')
 
 generateHtml = (entireTeam) => {
 
     teamCards = []; 
 
+    // cycles through all user data inputed in the command line
     for (let i = 0; i < entireTeam.length; i++) {
+
         const teamMember = entireTeam[i];
-        switch (teamMember.getRoles()) {
 
+        // TODO: console returns getRole() as not a function
+        switch (teamMember.getRole()) {
+            case 'Manager':
+                const manager = createManager(teamMember);
+                teamCards.push(manager);
 
-        case 'Manager':
-            const manager = new Manager(teamMember.id, teamMember.name, teamMember.email, teamMember.officeNumber);
-            teamCards.push(createManager(manager));
-            break;
+                break;
 
-          case 'Engineer':
-            const engineer = new Engineer(teamMember.id, teamMember.name, teamMember.email, teamMember.github);
-            teamCards.push(createEngineer(engineer));
-            break;
+              case 'Engineer':
+                const engineer = createEngineer(teamMember);
+                teamCards.push(engineer);
 
-          case 'Intern':
-            const intern = new Intern(teamMember.id, teamMember.name, teamMember.email, teamMember.school);
-            teamCards.push(createIntern(intern));
-            break;
-    } 
+                break;
+
+              case 'Intern':
+                const intern = createIntern(teamMember);
+                teamCards.push(intern);
+
+                break;
+
+        }
+
+        
     }
 
     const memberCard = teamCards.join('')
-
-    // return to generated page
+    
     const createNewTeam = createTeamSite(memberCard); 
     return createNewTeam;
 

@@ -1,16 +1,21 @@
+// employees
 const Manager = require('./lib/manager');
 const Engineer = require('./lib/engineer');
 const Intern = require('./lib/intern'); 
+
+// packages
 const fs = require('fs'); 
 const inquirer = require('inquirer');
 
+// generate html file
 const generateHtml = require('./src/generateHTML');
 
+// all userdata will be placed within this array and transfered to our generatehtml file
 const entireTeam = []; 
 
 // welcome prompt
 const welcomePrompt = () => {
-    return inquirer.prompt ([
+    inquirer.prompt ([
         {
             type: 'confirm',
             message: "Welcome to the Team Profile Generate, please begin by pressing enter!",
@@ -18,7 +23,7 @@ const welcomePrompt = () => {
             default: true
         }
     ])
-    .then( welcomePrompt => {
+    .then((welcomePrompt) => {
         switch(welcomePrompt.continue) {
             case true:
                 iniatialQuestion();
@@ -31,7 +36,7 @@ const welcomePrompt = () => {
 
 // iniatial question
 const iniatialQuestion = () => {
-    return inquirer.prompt ([
+    inquirer.prompt ([
         {
             type: 'list',
             message: "which would you like to enter?",
@@ -40,14 +45,16 @@ const iniatialQuestion = () => {
         }
     ])
     // jump to which role they choose
-    .then(iniatialQuestion => {
+    .then((iniatialQuestion) => {
         switch(iniatialQuestion.role) {
             case 'Manager':
                 newManager();
                 break;
+
             case 'Engineer':
                 newEngineer();
                 break;
+
             case 'Intern':
                 newIntern();
                 break;
@@ -57,20 +64,20 @@ const iniatialQuestion = () => {
 
 // creates manager
 const newManager = () => {
-    return inquirer.prompt ([
+    inquirer.prompt ([
         {
             type: 'input',
-            message: 'Please enter your name', 
+            message: 'Manager: Please enter your name', 
             name: 'name',
         },
         {
             type: 'input',
-            message: "Please enter your ID",
+            message: "Manager: Please enter your ID",
             name: 'id',
         },
         {
             type: 'input',
-            message: "Please enter your email",
+            message: "Manager: Please enter your email",
             name: 'email',
             validate: email => {
                 valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
@@ -84,7 +91,7 @@ const newManager = () => {
         },
         {
             type: 'input',
-            message: "Please enter your office number",
+            message: "Manager: Please enter your office number",
             name: 'officeNumber',
         },
         {
@@ -107,28 +114,28 @@ const newManager = () => {
                 break;
 
                 default:
-                htmlAddition('dist/index.html', generateHtml(entireTeam))
-
+                    htmlAddition('dist/index.html', generateHtml(entireTeam))
+        
         }
     });
 };
 
 // creates engineer
 const newEngineer = () => {
-    return inquirer.prompt ([
+    inquirer.prompt ([
         {
             type: 'input',
-            message: "What's their name?",
+            message: "Engineer: What's their name?",
             name: 'name', 
         },
         {
             type: 'input',
-            message: "Please enter their ID?",
+            message: "Engineer: Please enter their ID?",
             name: 'id',
         },
         {
             type: 'input',
-            message: "Please enter their email address",
+            message: "Engineer: Please enter their email address",
             name: 'email',
             validate: email => {
                 valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
@@ -142,13 +149,13 @@ const newEngineer = () => {
         },
         {
             type: 'input',
-            message: "Please enter their github username",
+            message: "Engineer: Please enter their github username",
             name: 'github',
         },
         {
             type: 'confirm',
             name: 'confirmNewMember',
-            message: 'Would you like to add another team member?',
+            message: 'Engineer: Would you like to add another team member?',
             default: true
         }
     ])
@@ -172,20 +179,20 @@ const newEngineer = () => {
 
 // creates intern
 const newIntern = () => {
-    return inquirer.prompt ([
+    inquirer.prompt ([
         {
             type: 'input',
-            message: "What's their name?",
+            message: "Intern: What's their name?",
             name: 'name', 
         },
         {
             type: 'input',
-            message: "Please enter their ID?",
+            message: "Intern: Please enter their ID?",
             name: 'id',
         },
         {
             type: 'input',
-            message: "Please enter their email address",
+            message: "Intern: Please enter their email address",
             name: 'email',
             validate: email => {
                 valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
@@ -200,7 +207,7 @@ const newIntern = () => {
         {
             type: 'input',
             name: 'school',
-            message: "Please enter the intern's school",
+            message: "Intern: Please enter their school",
         },
         {
             type: 'confirm',
@@ -229,16 +236,27 @@ const newIntern = () => {
 };
 
 // writes the code and deposits it in the dist folder
-const htmlAddition = data => {
-    fs.writeFile('./dist/index.html', data, err => {
-        if (err) {
-            console.log(err);
+// const htmlAddition = data => {
+//     fs.writeFile('./dist/index.html', data, err => {
+//         if (err) {
+//             console.log(err);
+//             return;
+//         } else {
+//             console.log("Your project team page is now complete. Your new html file should be located within your folder. Come Again!")
+//         }
+//     })
+// }; 
+
+function htmlAddition(filename, data) {
+    fs.writeFile(filename, data, (err) => {
+        if(err) {
+            console.log(err)
             return;
         } else {
             console.log("Your project team page is now complete. Your new html file should be located within your folder. Come Again!")
         }
-    })
-}; 
+    });
+};
 
 // begins the prompts in the integrated terimal 
-welcomePrompt()
+welcomePrompt();
